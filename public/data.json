@@ -1,0 +1,142 @@
+{
+  "robot": {
+    "currentShelf": "tag3"
+  },
+  "shelves": [
+    {
+      "id": "A",
+      "rfid": "RFID_A_1234",
+      "location": "FixedLocationA",
+      "coordinates": {
+        "x": 100,
+        "y": 200
+      },
+      "rows": [
+        [
+          {
+            "slot": 1,
+            "loaded": true,
+            "packageId": "PKG001"
+          },
+          {
+            "slot": 2,
+            "loaded": false,
+            "packageId": null
+          },
+          {
+            "slot": 3,
+            "loaded": false,
+            "packageId": null
+          }
+        ],
+        [
+          {
+            "slot": 4,
+            "loaded": true,
+            "packageId": "PKG002"
+          },
+          {
+            "slot": 5,
+            "loaded": false,
+            "packageId": null
+          },
+          {
+            "slot": 6,
+            "loaded": false,
+            "packageId": null
+          }
+        ]
+      ]
+    },
+    {
+      "id": "B",
+      "rfid": "RFID_B_5678",
+      "location": "FixedLocationB",
+      "coordinates": {
+        "x": 300,
+        "y": 200
+      },
+      "rows": [
+        [
+          {
+            "slot": 1,
+            "loaded": true,
+            "packageId": "PKG003"
+          },
+          {
+            "slot": 2,
+            "loaded": false,
+            "packageId": null
+          },
+          {
+            "slot": 3,
+            "loaded": false,
+            "packageId": null
+          }
+        ],
+        [
+          {
+            "slot": 4,
+            "loaded": true,
+            "packageId": "PKG004"
+          },
+          {
+            "slot": 5,
+            "loaded": false,
+            "packageId": null
+          },
+          {
+            "slot": 6,
+            "loaded": false,
+            "packageId": null
+          }
+        ]
+      ]
+    },
+    {
+      "id": "C",
+      "rfid": "RFID_C_9012",
+      "location": "FixedLocationC",
+      "coordinates": {
+        "x": 500,
+        "y": 200
+      },
+      "rows": [
+        [
+          {
+            "slot": 1,
+            "loaded": true,
+            "packageId": "PKG005"
+          },
+          {
+            "slot": 2,
+            "loaded": true,
+            "packageId": null
+          },
+          {
+            "slot": 3,
+            "loaded": false,
+            "packageId": null
+          }
+        ],
+        [
+          {
+            "slot": 4,
+            "loaded": true,
+            "packageId": "PKG006"
+          },
+          {
+            "slot": 5,
+            "loaded": false,
+            "packageId": null
+          },
+          {
+            "slot": 6,
+            "loaded": false,
+            "packageId": null
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+// App.jsx
+import React, { useEffect, useState } from "react";
 
-function ManagePackages() {
+function App() {
   const [data, setData] = useState(null);
-
   const [error, setError] = useState(null);
 
-  // Helper function to fetch data from data.json
-  const fetchData = useCallback(() => {
+  // 1. Load initial data from data.json
+  useEffect(() => {
     fetch("/data.json")
       .then((res) => {
         if (!res.ok) {
@@ -21,25 +21,12 @@ function ManagePackages() {
       });
   }, []);
 
-  // 1. Load initial data from data.json when the component mounts.
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  // 2. Poll for updates in data.json every few seconds (e.g., every 3 seconds)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetchData();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [fetchData]);
-
-  // 3. Setup WebSocket connection to listen for RFID messages
+  // 2. Setup WebSocket connection to listen for RFID messages
   useEffect(() => {
     let ws;
 
     const connect = () => {
+      // Try connecting to your WS server (adjust the URL if needed)
       ws = new WebSocket("ws://localhost:8080");
 
       ws.onopen = () => {
@@ -66,6 +53,9 @@ function ManagePackages() {
               );
 
               if (foundShelf) {
+                console.log(
+                  `Updating robot position to Shelf ${foundShelf.id}`
+                );
                 // Return new state with updated robot position (currentShelf)
                 return {
                   ...prevData,
@@ -101,7 +91,7 @@ function ManagePackages() {
     };
   }, []);
 
-  // 4. Render the component contents based on the current state.
+  // 3. If there's an error or data is not loaded, display appropriate message.
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -109,6 +99,7 @@ function ManagePackages() {
       </div>
     );
   }
+
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold text-center mb-8">
@@ -136,11 +127,10 @@ function ManagePackages() {
                     {row.map((pkg, slotIndex) => (
                       <div
                         key={slotIndex}
-                        className={`flex-1 border rounded p-4 text-center ${
-                          pkg.loaded
+                        className={`flex-1 border rounded p-4 text-center ${pkg.loaded
                             ? "bg-green-500 text-white"
                             : "bg-red-500 text-white"
-                        }`}
+                          }`}
                       >
                         <p className="font-medium">
                           {pkg.loaded ? `ID: ${pkg.packageId}` : "Empty"}
@@ -161,4 +151,4 @@ function ManagePackages() {
   );
 }
 
-export default ManagePackages;
+export default App;

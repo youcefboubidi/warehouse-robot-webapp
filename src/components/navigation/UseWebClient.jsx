@@ -8,7 +8,7 @@ const useWebSocket = ({
   onClose = () => {},
   onError = () => {},
 } = {}) => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState();
   const [input, setInput] = useState("");
   const socketRef = useRef(null);
 
@@ -27,7 +27,7 @@ const useWebSocket = ({
       } catch {
         parsed = event.data;
       }
-      setMessages((prev) => [...prev, parsed]);
+      setMessages(parsed);
       onMessage(parsed);
     };
 
